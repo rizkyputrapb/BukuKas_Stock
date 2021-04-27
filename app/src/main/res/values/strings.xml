@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">BukuKas_Stock</string>
+    <string name="delete_title">Hapus Barang</string>
+    <string name="delete_message">Anda ingin menghapus item ini?</string>
+    <string name="delete_confirm">Ya</string>
+    <string name="delete_cancel">Tidak</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -14,4 +18,5 @@
     <string name="item_name_hint">Masukkan Nama Barang</string>
     <string name="item_amount">Jumlah Barang</string>
     <string name="item_minimal_amount">Jumlah Minimal Barang</string>
+    <string name="searchitem_label">Cari Barang</string>
 </resources>

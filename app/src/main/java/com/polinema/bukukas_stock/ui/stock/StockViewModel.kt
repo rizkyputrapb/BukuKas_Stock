@@ -24,6 +24,7 @@ class StockViewModel @Inject constructor(@ApplicationContext context: Context) :
             emit(Resource.loading(null))
             try {
                 emit(Resource.success(dbHelperImpl.insertItem(item)))
+
             } catch (e: Exception) {
                 emit(
                     Resource.error(

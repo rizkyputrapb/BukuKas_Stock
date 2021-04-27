@@ -13,6 +13,20 @@
         android:layout_height="match_parent"
         tools:context=".ui.stock.allitem.AllItemFragment">
 
+
+        <SearchView
+            android:id="@+id/itemSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_primary"
+            android:textCursorDrawable="@null"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@null"
+            android:queryHint="@string/searchitem_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvAllItem"
             android:layout_width="0dp"
@@ -20,7 +34,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/itemSearch"
             tools:listitem="@layout/item_stocklist" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

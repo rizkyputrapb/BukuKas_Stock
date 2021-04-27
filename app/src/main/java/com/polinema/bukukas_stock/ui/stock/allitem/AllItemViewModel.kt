@@ -7,25 +7,29 @@ import androidx.lifecycle.liveData
 import com.example.githubuserdetailed.api.Resource
 import com.polinema.bukukas_stock.dao.DbBuilder
 import com.polinema.bukukas_stock.dao.DbHelperImpl
+import com.polinema.bukukas_stock.dao.Item
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
 class AllItemViewModel @Inject constructor(@ApplicationContext context: Context) : ViewModel() {
     private val dbHelperImpl = DbHelperImpl(DbBuilder.getInstance(context))
 
-    fun getAllItem() = liveData(Dispatchers.Default) {
+    fun getAllItem() = dbHelperImpl.getAllItem()
+
+    fun deleteItem(item: Item) = liveData(Dispatchers.Default) {
         emit(Resource.loading(null))
-        try{
-            emit(Resource.success(dbHelperImpl.getAllItem()))
-            Log.i("RoomStock", "getting items: ${dbHelperImpl.getAllItem().value?.size}")
+        try {
+            emit(Resource.success(dbHelperImpl.delete(item)))
         } catch (e: Exception) {
             emit(Resource.error(
                 null,
-                e.message ?: "Unknown Error Occured!"
+                e.message ?: "Unknown error"
             ))
+
         }
     }
 }

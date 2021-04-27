@@ -116,6 +116,7 @@ class BottomStockDialog @Inject constructor() : BottomSheetDialogFragment() {
                     }
                 }
             })
+            dismiss()
         }
         super.onViewCreated(view, savedInstanceState)
     }

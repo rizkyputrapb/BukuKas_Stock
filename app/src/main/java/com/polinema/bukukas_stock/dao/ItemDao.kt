@@ -10,7 +10,7 @@ import androidx.room.Query
 interface ItemDao {
 
     @Query("SELECT * FROM item")
-    suspend fun getAllItem(): LiveData<List<Item>>
+    fun getAllItem(): LiveData<List<Item>>
 
     @Insert
     suspend fun insertItem(item: Item)

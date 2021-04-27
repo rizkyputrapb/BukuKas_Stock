@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 
 class DbHelperImpl(private val appDatabase: AppDatabase) : DbHelper {
 
-    override suspend fun getAllItem(): LiveData<List<Item>> = appDatabase.itemDao().getAllItem()
+    override fun getAllItem(): LiveData<List<Item>> = appDatabase.itemDao().getAllItem()
 
     override suspend fun insertItem(item: Item) = appDatabase.itemDao().insertItem(item)
 
