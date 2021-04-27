@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">BukuKas_Stock</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_transaksi">Transaksi</string>
+    <string name="title_stock">Stok Barang</string>
+    <string name="title_account">Akun</string>
+    <string name="tambah_stock_label">Tambah Barang</string>
+    <string name="label_semua">Semua Barang</string>
+    <string name="label_menipis">Stok Menipis</string>
+    <string name="tambah_barang_label">Tambah Barang Baru</string>
+    <string name="item_name_label">Nama Barang</string>
+    <string name="item_name_hint">Masukkan Nama Barang</string>
+    <string name="item_amount">Jumlah Barang</string>
+    <string name="item_minimal_amount">Jumlah Minimal Barang</string>
+</resources>
