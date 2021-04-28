@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.polinema.bukukas_stock.R
 import com.polinema.bukukas_stock.databinding.BottomSheetLayoutBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.bottom_sheet_layout.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -87,36 +88,40 @@ class BottomStockDialog @Inject constructor() : BottomSheetDialogFragment() {
         }
 
         binding.btnAddItemtoStock.setOnClickListener {
-            viewModel.addItem(
-                itemName = binding.edtItemName.text.toString(),
-                itemAmount = Integer.parseInt(binding.edtAmountItem.text.toString()),
-                itemMinimal = Integer.parseInt(binding.edtMinimalItem.text.toString())
-            ).observe(viewLifecycleOwner, {
-                it?.let { resource ->
-                    when (resource.status) {
-                        Status.LOADING -> {
+            if (edtItemName.text.isNullOrEmpty()) {
+                edtItemName.error = "Nama barang harus diisi!"
+            } else {
+                viewModel.addItem(
+                    itemName = binding.edtItemName.text.toString(),
+                    itemAmount = Integer.parseInt(binding.edtAmountItem.text.toString()),
+                    itemMinimal = Integer.parseInt(binding.edtMinimalItem.text.toString())
+                ).observe(viewLifecycleOwner, {
+                    it?.let { resource ->
+                        when (resource.status) {
+                            Status.LOADING -> {
 
-                        }
-                        Status.SUCCESS -> {
-                            Log.d("StockRoom", "addItem: Success")
-                            Toast.makeText(
-                                activity?.applicationContext,
-                                "Added to Stock",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                        Status.ERROR -> {
-                            Log.e("StockRoom", "addItem: Failed (${it.message})")
-                            Toast.makeText(
-                                activity?.applicationContext,
-                                "Error adding to Favorites: ${it.message}",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            }
+                            Status.SUCCESS -> {
+                                Log.d("StockRoom", "addItem: Success")
+                                Toast.makeText(
+                                    activity?.applicationContext,
+                                    "Added to Stock",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                            Status.ERROR -> {
+                                Log.e("StockRoom", "addItem: Failed (${it.message})")
+                                Toast.makeText(
+                                    activity?.applicationContext,
+                                    "Error adding to Favorites: ${it.message}",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
                         }
                     }
-                }
-            })
-            dismiss()
+                })
+                dismiss()
+            }
         }
         super.onViewCreated(view, savedInstanceState)
     }
