@@ -10,6 +10,7 @@ This is a small project for the requirement of my internship selection. This pro
  - Show items added to the stock
  - Show thinning items
  - Delete items from stock
+ - Search specific items
 
 ## Tech Stack
 
