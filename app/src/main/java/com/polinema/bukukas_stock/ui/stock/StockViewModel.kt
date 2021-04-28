@@ -1,6 +1,7 @@
 package com.polinema.bukukas_stock.ui.stock
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.githubuserdetailed.api.Resource
@@ -34,4 +35,19 @@ class StockViewModel @Inject constructor(@ApplicationContext context: Context) :
                 )
             }
         }
+
+    fun editItem(item: Item) = liveData(Dispatchers.Default) {
+        emit(Resource.loading(null))
+        try {
+            emit(Resource.success(dbHelperImpl.updateItem(item)))
+        } catch (e: Exception) {
+            emit(
+                Resource.error(
+                    null,
+                    e.message ?: "Unknown error"
+                )
+            )
+            Log.i("updateItem", "update itemid: ${item.id} failed (${e.message})")
+        }
+    }
 }

@@ -1,9 +1,8 @@
-package com.polinema.bukukas_stock.ui.stock.allitem
+package com.polinema.bukukas_stock.ui.stock
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView

@@ -15,6 +15,9 @@ import com.example.githubuserdetailed.api.Status
 import com.polinema.bukukas_stock.R
 import com.polinema.bukukas_stock.dao.Item
 import com.polinema.bukukas_stock.databinding.AllItemFragmentBinding
+import com.polinema.bukukas_stock.ui.stock.AllItemAdapter
+import com.polinema.bukukas_stock.ui.stock.EditDialog
+import com.polinema.bukukas_stock.ui.stock.ItemOnClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -60,9 +63,11 @@ class AllItemFragment : Fragment() {
                         deleteDialog(item)
                     }
 
-                    override fun onBtnEditClick(item_amount: Int, item_minimal: Int) {
-                        TODO("Not yet implemented")
+                    override fun onBtnEditClick(item: Item) {
+                        val editDialog = EditDialog.newInstance(item)
+                        editDialog.show(childFragmentManager, "item")
                     }
+
 
 
                 })

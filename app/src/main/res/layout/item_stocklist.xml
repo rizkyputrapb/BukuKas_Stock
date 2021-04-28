@@ -6,7 +6,7 @@
     <data>
         <variable
             name="clicklistener"
-            type="com.polinema.bukukas_stock.ui.stock.allitem.ItemOnClickListener" />
+            type="com.polinema.bukukas_stock.ui.stock.ItemOnClickListener" />
 
         <variable
             name="item"
@@ -84,7 +84,7 @@
                     android:layout_width="25dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="2dp"
-                    android:onClick="@{()->clicklistener.onBtnEditClick(item.item_stock, item.item_minimal)}"
+                    android:onClick="@{()->clicklistener.onBtnEditClick(item)}"
                     android:layout_marginEnd="2dp"
                     android:layout_marginBottom="2dp"
                     android:background="@drawable/rounded_corners"

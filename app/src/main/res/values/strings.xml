@@ -19,4 +19,5 @@
     <string name="item_amount">Jumlah Barang</string>
     <string name="item_minimal_amount">Jumlah Minimal Barang</string>
     <string name="searchitem_label">Cari Barang</string>
+    <string name="save_label">Simpan</string>
 </resources>
