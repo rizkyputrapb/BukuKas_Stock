@@ -20,6 +20,7 @@ import com.polinema.bukukas_stock.ui.stock.EditDialog
 import com.polinema.bukukas_stock.ui.stock.ItemOnClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 @AndroidEntryPoint
@@ -39,25 +40,8 @@ class AllItemFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.all_item_fragment, container, false)
         binding.lifecycleOwner = this
-        rvSetup()
-        binding.itemSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(p0: String?): Boolean {
-                itemAdapter.filter.filter(p0)
-                return true
-            }
-
-        })
-        return binding.root
-    }
-
-    fun rvSetup() {
         viewModel.getAllItem().observe(viewLifecycleOwner, { listItems ->
-            itemAdapter = AllItemAdapter(
-                listItems as ArrayList<Item>,
+            itemAdapter = AllItemAdapter(listItems as ArrayList<Item>,
                 object : ItemOnClickListener {
                     override fun onBtnDeleteClick(item: Item) {
                         deleteDialog(item)
@@ -67,18 +51,30 @@ class AllItemFragment : Fragment() {
                         val editDialog = EditDialog.newInstance(item)
                         editDialog.show(childFragmentManager, "item")
                     }
-
-
-
                 })
-            with(binding.rvAllItem) {
-                adapter = itemAdapter
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(true)
-            }
-            itemAdapter.notifyItemRangeChanged(0, itemAdapter.itemCount)
-        })
+            binding.itemSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(p0: String?): Boolean {
+                    return false
+                }
 
+                override fun onQueryTextChange(p0: String?): Boolean {
+                    itemAdapter.filter.filter(p0)
+                    return true
+                }
+
+            })
+            rvSetup()
+        })
+        return binding.root
+    }
+
+    fun rvSetup() {
+        with(binding.rvAllItem) {
+            adapter = itemAdapter
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+        }
+        itemAdapter.notifyItemRangeChanged(0, itemAdapter.itemCount)
     }
 
     fun deleteDialog(item: Item) {

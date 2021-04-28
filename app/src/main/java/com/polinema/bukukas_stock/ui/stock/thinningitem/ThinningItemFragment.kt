@@ -40,17 +40,6 @@ class ThinningItemFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.thinning_item_fragment, container, false)
         binding.lifecycleOwner = this
         rvSetup()
-        binding.thinningSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(p0: String?): Boolean {
-                thinningAdapter.filter.filter(p0)
-                return true
-            }
-
-        })
         return binding.root
     }
 
@@ -68,6 +57,17 @@ class ThinningItemFragment : Fragment() {
                     }
 
                 })
+            binding.thinningSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(p0: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(p0: String?): Boolean {
+                    thinningAdapter.filter.filter(p0)
+                    return true
+                }
+
+            })
             with(binding.rvThinning) {
                 adapter = thinningAdapter
                 layoutManager = LinearLayoutManager(context)
